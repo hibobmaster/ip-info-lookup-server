@@ -7,9 +7,9 @@ GET / get ip info from your ip address
 
 POST / get json-formatted ip info from your ip address
 
-GET /ip/{ip} get json-formatted ip info
+GET /ip/{ip} get ip info from provided ip address
 
-POST /ip/{ip} get json-formatted ip info
+POST /ip/{ip} get json-formatted ip info from provided ip address
 
 Example:
 ```bash
