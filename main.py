@@ -10,7 +10,7 @@ app = FastAPI()
 def rootg(request: Request):
     return (
         struct_ip_info_str(request.client.host)
-        + "\n\n"
+        + "\n"
         + request.headers.get("User-Agent")
     )
 
