@@ -32,7 +32,7 @@ class MMDB:
             return self.country_reader.country(ip).country.name
         except geoip2.errors.AddressNotFoundError:
             return "N/A"
-        
+
     def get_city_name(self, ip: str) -> str:
         try:
             return self.city_reader.city(ip).city.name
@@ -44,12 +44,13 @@ class MMDB:
             return self.city_reader.city(ip).location.latitude
         except geoip2.errors.AddressNotFoundError:
             return "N/A"
-        
+
     def get_longitude(self, ip: str) -> float:
         try:
             return self.city_reader.city(ip).location.longitude
         except geoip2.errors.AddressNotFoundError:
             return "N/A"
+
 
 def ip_validator(ip: str):
     try:
