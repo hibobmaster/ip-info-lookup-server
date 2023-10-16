@@ -34,3 +34,7 @@ def ipp(ip: str):
         return JSONResponse(content=struct_ip_info(ip), status_code=200)
     else:
         return JSONResponse(content={"error": "invalid ip address"}, status_code=400)
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app, host='127.0.0.1', port=10000)
