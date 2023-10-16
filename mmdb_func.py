@@ -4,8 +4,9 @@ import geoip2.errors
 
 
 class MMDB:
-    def __init__(self, asn_db_path: str, country_db_path: str):
+    def __init__(self, asn_db_path: str, city_db_path: str, country_db_path: str):
         self.asn_reader = geoip2.database.Reader(asn_db_path)
+        self.city_reader = geoip2.database.Reader(city_db_path)
         self.country_reader = geoip2.database.Reader(country_db_path)
 
     def get_asn_num(self, ip: str) -> int:
@@ -31,7 +32,24 @@ class MMDB:
             return self.country_reader.country(ip).country.name
         except geoip2.errors.AddressNotFoundError:
             return "N/A"
+        
+    def get_city_name(self, ip: str) -> str:
+        try:
+            return self.city_reader.city(ip).city.name
+        except geoip2.errors.AddressNotFoundError:
+            return "N/A"
 
+    def get_latitude(self, ip: str) -> float:
+        try:
+            return self.city_reader.city(ip).location.latitude
+        except geoip2.errors.AddressNotFoundError:
+            return "N/A"
+        
+    def get_longitude(self, ip: str) -> float:
+        try:
+            return self.city_reader.city(ip).location.longitude
+        except geoip2.errors.AddressNotFoundError:
+            return "N/A"
 
 def ip_validator(ip: str):
     try:
